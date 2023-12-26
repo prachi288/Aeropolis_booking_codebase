@@ -54,3 +54,27 @@
  - Crash Recovery-logs
 * Pages
 * Flush
+
+## HOW DB ENSURES ATOMICITY??
+* Logging
+ - DBMS logs all actions that it is doing so that later it can undo
+ - Black box 
+* Shadow Logging
+ - DBMS makes copies of actions this copy is initially considered as a temp copy. if transacton succeeds then it starts pointing to the new temp copy.
+
+## How to handle rollbacks
+* Undo log
+ - This log contains records about how to undo the last change done by a transaction, if any other transaction need the original data as a part of a consistent read operation, the unmodified data is retrieved from undo logs.
+* Redo log
+ - by defination, the redo log is a disk based data structure used frio crash recovery to correct data written by incomplete transaction. the changes which could maje it upto the data files before the crash or any
+ other reason are replayed automatically during restart of server often crash. 
+
+## Locking mechanism avoid race condition
+* shared lock
+* exclusive lock
+* content lock
+* row-level lock
+
+## Mysql is MVCC(Multi Version Concurrency Control)
+- compatible to allow multiple transaction to read and write to same data.
+

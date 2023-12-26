@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
+  
   Booking.init({
     flightId: {
       type: DataTypes.INTEGER,
