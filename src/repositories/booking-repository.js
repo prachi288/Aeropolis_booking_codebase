@@ -8,7 +8,9 @@ class BookingRepository extends CrudRepository {
         super(Booking);
     }
 
-    async createBooking(data,transaction )
+    async createBooking(data,transaction){
+        
+    }
 }
 
 module.exports = BookingRepository;
