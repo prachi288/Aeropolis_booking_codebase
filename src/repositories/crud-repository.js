@@ -31,13 +31,11 @@ class CrudRepository {
     }
 
     async get(data) {
-        try {
-            const response = await this.model.findByPk(data);
-            return response;
-        } catch(error) {
-            Logger.error('Something went wrong in the Crud Repo : get');
-            throw error;
+        const response = await this.model.findByPk(data);
+        if(!response) {
+            throw new AppError('Not able to fund the resource', StatusCodes.NOT_FOUND);
         }
+        return response;
     }
 
     async getAll() {
