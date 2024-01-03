@@ -78,3 +78,5 @@
 ## Mysql is MVCC(Multi Version Concurrency Control)
 - compatible to allow multiple transaction to read and write to same data.
 
+* Cron jobs are scheduled at recurring intervals,specified using a format based on unix-cron.
+

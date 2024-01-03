@@ -5,6 +5,7 @@ const {ServerConfig}=require('../config')
 const db=require('../models');
 const AppError=require('../utils/error/app-error');
 const {Enums} = require('../utils/common');
+const { Console } = require('winston/lib/winston/transports');
 const { BOOKED,CANCELLED} = Enums.BOOKING_STATUS;
 
 const bookingRepository= new BookingRepository();
@@ -83,7 +84,19 @@ async function cancelBooking(bookingId){
     }
 }
 
+async function cancelOldBookings(){
+    try {
+        console.log("Inside service")
+        const time = new Date( Date.now() - 1000 * 300 ); // time 5 mins ago
+        const response = await bookingRepository.cancelOldBookings(time);
+        return response;
+    } catch(error) {
+        console.log(error);
+    }
+}
+
 module.exports={
     createBooking,
-    makePayment
+    makePayment,
+    cancelOldBookings
 }

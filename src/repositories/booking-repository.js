@@ -16,7 +16,7 @@ class BookingRepository extends CrudRepository {
         return response;
     }
 
-    async get(data) {
+    async get(data,transaction) {
         const response = await this.model.findByPk(data,{transaction:transaction});
         if(!response){
             throw new AppError('Not able to fund the resource',StatusCodes.NOT_FOUND);
@@ -30,6 +30,33 @@ class BookingRepository extends CrudRepository {
                 id: id
             }
         },{transaction:transaction})
+        return response;
+    }
+
+    async cancelOldBookings(timestamp) {
+        console.log("in repo")
+        const response = await Booking.update({status: CANCELLED},{
+            where: {
+                [Op.and]: [
+                    {
+                        createdAt: {
+                            [Op.lt]: timestamp
+                        }
+                    }, 
+                    {
+                        status: {
+                            [Op.ne]: BOOKED
+                        }
+                    },
+                    {
+                        status: {
+                            [Op.ne]: CANCELLED
+                        }
+                    }
+                ]
+
+            }
+        });
         return response;
     }
 }
