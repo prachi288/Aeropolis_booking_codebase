@@ -17,7 +17,7 @@ class BookingRepository extends CrudRepository {
     }
 
     async get(data,transaction) {
-        const response = await this.model.findByPk(data,{transaction:transaction});
+        const response = await Booking.findByPk(data,{transaction:transaction});
         if(!response){
             throw new AppError('Not able to fund the resource',StatusCodes.NOT_FOUND);
         }
@@ -25,7 +25,7 @@ class BookingRepository extends CrudRepository {
     }
 
     async update(id, data,transaction) { // data -> {col: value, ....}
-        const response = await this.model.update(data, {
+        const response = await Booking.update(data, {
             where: {
                 id: id
             }

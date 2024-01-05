@@ -1,11 +1,11 @@
 const axios=require('axios');
 const { StatusCodes } = require('http-status-codes');
+
 const {BookingRepository}=require('../repositories');
 const {ServerConfig}=require('../config')
 const db=require('../models');
 const AppError=require('../utils/error/app-error');
 const {Enums} = require('../utils/common');
-const { Console } = require('winston/lib/winston/transports');
 const { BOOKED,CANCELLED} = Enums.BOOKING_STATUS;
 
 const bookingRepository= new BookingRepository();
