@@ -80,3 +80,8 @@
 
 * Cron jobs are scheduled at recurring intervals,specified using a format based on unix-cron.
 
+## Idempotency->
+* it is a property of certain operators in maths and CS where they can be applied multiple times changing the result beyond first application.
+* a idempotency key is used. this key is sent with request header.
+* if idempotency key is present then request not procceed otherwise it is procced and the key is stored for future purpose. 
+
