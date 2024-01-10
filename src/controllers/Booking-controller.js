@@ -8,7 +8,7 @@ async function createBooking(req,res){
     try {
         console.log("body",req.body);
         const response=await BookingService.createBooking({
-            flightId:res.body.flightId,
+            flightId:req.body.flightId,
             userId:req.body.userId,
             noofSeats: req.body.noofSeats
         });
@@ -17,6 +17,7 @@ async function createBooking(req,res){
                 .status(StatusCodes.OK)
                 .json(SuccessResponse);
     } catch (error) {
+        console.log(error);
         ErrorResponse.error=error;
         return res
                 .status(StatusCodes.INTERNAL_SERVER_ERROR)
