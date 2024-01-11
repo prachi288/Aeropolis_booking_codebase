@@ -29,6 +29,7 @@ async function createBooking(data){
         await transaction.commit();
         return booking;
     } catch (error) {
+        console.log(error);
         await transaction.rollback(); 
         throw error;      
     }
